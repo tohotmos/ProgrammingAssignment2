@@ -1,14 +1,18 @@
-# R functions is to cache time-consuming matrix inversion computations
-# If the contents of a matrix are not changing, we may ache the inverted matrix so that when we need it again,
+# These 2 functions are to cache time-consuming matrix inversion computations
+# If the content of a matrix is not changing, we may cache the inverted matrix so that when we need it again,
 # it can be looked up in the cache rather than recomputed.
 
+# Example of use:
+# > mat <- matrix(runif(16, -10, 10), 4, 4)
+# > cmat <- makeCacheMatrix(mat)
+# > cacheSolve(cmat)
 
 ## Function 'makeCacheMatrix()':
 ## Creates a special "vector", which is really a list containing a function to:
-## 1. set the value of the vector
-## 2. get the value of the vector
-## 3. set the value of the mean
-## 4. get the value of the mean
+## 1. set the matrix to be inverted
+## 2. get the matrix to be inverted
+## 3. set the inverted matrix
+## 4. get the inverted matrix
 
 makeCacheMatrix <- function(x = matrix()) {
 
